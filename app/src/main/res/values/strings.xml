@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">MsgMe</string>
+    <string name="login_txt">Login</string>
+    <string name="name_txt">Name</string>
+    <string name="pass_txt">Password</string>
+    <string name="valid_btn">Connect</string>
+    <string name="register_btn">Register</string>
+    <string name="inscr_btn">Inscription</string>
+    <string name="add_btn">+</string>
+
+    <string name="retour_btn">Retour</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+
+
+</resources>
