@@ -26,6 +26,7 @@ public class PopUpDemo extends Activity {
                 public void onClick(View v) {
 // TODO Auto-generated method stub
                     showPopup();
+                    finish();
                 }
             });
         }
@@ -37,19 +38,12 @@ public class PopUpDemo extends Activity {
                 LayoutInflater inflater = (LayoutInflater) PopUpDemo.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
                 View layout = inflater.inflate(R.layout.popup,
                         (ViewGroup) findViewById(R.id.popup_1));
-                pw = new PopupWindow(layout, 300, 370, true);
+                pw = new PopupWindow(layout, 600, 400, true);
                 pw.showAtLocation(layout, Gravity.CENTER, 0, 0);
-                Close = (Button) layout.findViewById(R.id.close_popup);
-                Close.setOnClickListener(cancel_button);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-        private View.OnClickListener cancel_button = new View.OnClickListener() {
-            public void onClick(View v) {
-                pw.dismiss();
-            }
-        };
 
 }

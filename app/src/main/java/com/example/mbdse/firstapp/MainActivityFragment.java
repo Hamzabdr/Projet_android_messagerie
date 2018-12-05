@@ -33,7 +33,7 @@ public class MainActivityFragment extends Fragment implements ICallable {
 
     List<String> strs = new ArrayList<String>();
     List<Person> prs = new ArrayList<Person>();
-
+    PopUpDemo popup = new PopUpDemo();
     public MainActivityFragment() {
         mAdapter = new TextAdapter(strs);
     }
@@ -46,7 +46,6 @@ public class MainActivityFragment extends Fragment implements ICallable {
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     //db.delPerson();
-    //addData();
 }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -108,16 +107,18 @@ public void onCreate(Bundle savedInstanceState) {
     }
 
     public void addData() {
-        long id = db.addPerson("Hamza", "Boudradar");
-        db.addPerson("Mehdi", "Saad");
-        db.addPerson("Aime", "Nikeka");
-        db.addPerson("Grace  ", "Bocou");
-        db.addPerson("Nadir","ibegh");
-        if (id == -1) {
-            Toast.makeText(getContext(), "access failed", Toast.LENGTH_SHORT).show();
+        if(db.readPerson() == null) {
+            long id = db.addPerson("Hamza", "Boudradar");
+            db.addPerson("Mehdi", "Saad");
+            db.addPerson("Aime", "Nikeka");
+            db.addPerson("Grace  ", "Bocou");
+            db.addPerson("Nadir", "ibegh");
+            if (id == -1) {
+                Toast.makeText(getContext(), "access failed", Toast.LENGTH_SHORT).show();
 
-        } else {
-            Toast.makeText(getContext(), "access success", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getContext(), "access success", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
