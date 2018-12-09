@@ -2,6 +2,8 @@ package com.example.mbdse.firstapp;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -9,23 +11,35 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.PopupWindow;
+import android.widget.Toast;
 
 public class PopUpDemo extends Activity {
         Button Close;
         Button Create;
-
+        EditText Name;
+        Database db;
+        TextAdapter adapter;
         /** Called when the activity is first created. */
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.main);
+            db = Database.getInstance(getApplicationContext());
+            Name = (EditText) findViewById(R.id.login_box);
             Create = (Button) findViewById(R.id.button1);
             Create.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 // TODO Auto-generated method stub
-                    showPopup();
+                    double res = db.addPerson(Name.getText().toString(), "");
+
+                    if (res == -1)
+                        Toast.makeText(getApplicationContext(),"Contact add failed",Toast.LENGTH_SHORT).show();
+                    else
+                        Toast.makeText(getApplicationContext(),"Contact add Succesful",Toast.LENGTH_SHORT).show();
+                    //showPopup();
                     finish();
                 }
             });

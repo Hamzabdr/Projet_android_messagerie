@@ -28,6 +28,7 @@ public class FirstClass extends AppCompatActivity {
         validBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 startActivity(intent2);
 
             }

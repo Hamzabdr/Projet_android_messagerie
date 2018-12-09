@@ -44,6 +44,15 @@ public class Database {
         return newRowId;
     }
 
+    public long addUser(String login, String nom, String password){
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+            contentValues.put(ContactContract.FeedUser.COLUMN_NAME_LOGIN,login);
+            contentValues.put(ContactContract.FeedUser.COLUMN_NAME_NOM,nom);
+            contentValues.put(ContactContract.FeedUser.COLUMN_NAME_PASSWORD,password);
+            return db.insert(ContactContract.FeedUser.TABLE_NAME,null, contentValues);
+    }
+
     public List<Person> readPerson() {
         SQLiteDatabase db = mDbHelper.getReadableDatabase();
         String[] projection = {
@@ -81,6 +90,13 @@ public class Database {
         return persons;
     }
 
+    public boolean cheklogin(String login){
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from User where login=?",new String[]{login});
+        if (cursor.getCount() >0 ) return false;
+        else return true;
+    }
+
     public final class ContactContract {
 
         private ContactContract() {
@@ -90,6 +106,12 @@ public class Database {
             public static final String TABLE_NAME = "Contact";
             public static final String COLUMN_NAME_LASTNAME = "Nom";
             public static final String COLUMN_NAME_FIRSTNAME = "Prenom";
+        }
+        public class FeedUser implements BaseColumns {
+            public static final String TABLE_NAME = "User";
+            public static final String COLUMN_NAME_LOGIN= "login";
+            public static final String COLUMN_NAME_NOM= "NOM";
+            public static final String COLUMN_NAME_PASSWORD = "password";
         }
 
 

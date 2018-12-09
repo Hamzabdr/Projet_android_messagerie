@@ -59,6 +59,7 @@ public void onCreate(Bundle savedInstanceState) {
                 startActivity(intent);
             }
         });
+        //getFragmentManager().beginTransaction().detach(this).attach(this).commit();
         recyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(mAdapter);
@@ -86,6 +87,19 @@ public void onCreate(Bundle savedInstanceState) {
         });
         return v;
     }
+    @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        if (isVisibleToUser) {
+            Fragment currentFragment = getFragmentManager().findFragmentByTag("YourFragmentTag");
+            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+            fragmentTransaction.detach(currentFragment);
+            fragmentTransaction.attach(currentFragment);
+            fragmentTransaction.commit();
+            //Write down your refresh code here, it will call every time user come to this fragment.
+            //If you are using listview with custom adapter, just call notifyDataSetChanged().
+        }
+    }
 
     @Override
     public void onAttach(Context context) {
@@ -96,6 +110,7 @@ public void onCreate(Bundle savedInstanceState) {
             strs.add(p.getNom()+" "+p.getPrenom());
         }
         mAdapter.notifyDataSetChanged();
+        getFragmentManager().beginTransaction().detach(this).attach(this).commit();
 
 
         if (context instanceof ICallable) {
@@ -114,10 +129,10 @@ public void onCreate(Bundle savedInstanceState) {
             db.addPerson("Grace  ", "Bocou");
             db.addPerson("Nadir", "ibegh");
             if (id == -1) {
-                Toast.makeText(getContext(), "access failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(), "access failed", Toast.LENGTH_SHORT).show();
 
             } else {
-                Toast.makeText(getContext(), "access success", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this.getContext(), "access success", Toast.LENGTH_SHORT).show();
             }
         }
     }
