@@ -50,6 +50,8 @@
         android:layout_marginBottom="@dimen/fab_margin"
         android:text="@string/valid_btn"
         android:background="@drawable/ring_ripple"
+        android:clickable="true"
+        android:elevation="@dimen/elevation_high"
         />
 
     <Button
@@ -58,6 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/ring_ripple"
+        android:clickable="true"
+        android:elevation="@dimen/elevation_high"
         />
 
 </LinearLayout>

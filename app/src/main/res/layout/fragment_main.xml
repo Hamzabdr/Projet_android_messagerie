@@ -1,41 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_weight="8"
+    tools:context="com.example.mbdse.firstapp.MainActivityFragments"
+    android:orientation="vertical"
     >
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="8" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:clipToPadding="false"
+        android:scrollbars="vertical" />
 
-    <ImageButton
+
+    <android.support.design.widget.FloatingActionButton
         android:id="@+id/btnTxt"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_gravity="end|bottom"
-        android:layout_marginTop="@dimen/add_button_margin"
-        android:layout_marginEnd="@dimen/add_button_margin"
-        android:layout_marginBottom="@dimen/add_button_margin"
-        android:background="@drawable/oval_ripple"
-        android:elevation="@dimen/elevation_low"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
         android:src="@android:drawable/ic_input_add"
-        android:theme="@style/AppTheme"
-        android:tint="@android:color/white" />
+        android:layout_margin="16dp" />
+
     <!--<ImageButton-->
-        <!--android:id="@+id/btnTxt"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="end|bottom"-->
-        <!--android:tint="@android:color/white"-->
-        <!--android:elevation="@dimen/elevation_low"-->
-        <!--android:layout_margin="20dp"-->
-        <!--app:backgroundTint="@color/design_default_color_primary_dark"-->
-        <!--tools:src="@android:drawable/ic_input_add" />        //-->
+    <!--android:id="@+id/btnTxt"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_gravity="end|bottom"-->
+    <!--android:tint="@android:color/white"-->
+    <!--android:elevation="@dimen/elevation_low"-->
+    <!--android:layout_margin="20dp"-->
+    <!--app:backgroundTint="@color/design_default_color_primary_dark"-->
+    <!--tools:src="@android:drawable/ic_input_add" />        //-->
     <!--android:background="@drawable/oval_ripple"-->
 
-</LinearLayout>
+</RelativeLayout>

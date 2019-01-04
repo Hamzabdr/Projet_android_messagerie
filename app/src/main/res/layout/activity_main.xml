@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:weightSum="5"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".MainActivityFragments">
 
     <FrameLayout
         android:id="@+id/fragmentHolder"
