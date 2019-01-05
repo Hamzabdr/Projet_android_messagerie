@@ -1,8 +1,6 @@
 package com.example.mbdse.firstapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +26,7 @@ public class RegisterActivity extends AppCompatActivity {
         passBox = (EditText) findViewById(R.id.pass_box);
         inscrBtn = (Button) findViewById(R.id.inscr_btn);
         retourBtn = (Button) findViewById(R.id.retour_btn);
-        final Intent intent = new Intent(this,FirstClass.class);
+        final Intent intent = new Intent(this,ConnexionActivity.class);
         retourBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,7 +39,9 @@ public class RegisterActivity extends AppCompatActivity {
                 String login = loginBox.getText().toString();
                 String pass = passBox.getText().toString();
                 String name = nameBox.getText().toString();
-                if (db.cheklogin(login) == true){
+                if ( login.equals("") || pass.equals("") || name.equals("")) {
+                    Toast.makeText(getApplicationContext(), "Fill all the fields !", Toast.LENGTH_SHORT).show();
+                } else if (db.checklogin(login) == true ){
                     long insert = db.addUser(login,name,pass);
                     if (insert == -1 ){
                         Toast.makeText(getApplicationContext(),"Login Already exists ! ",Toast.LENGTH_SHORT).show();

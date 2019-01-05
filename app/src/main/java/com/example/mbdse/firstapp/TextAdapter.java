@@ -15,10 +15,15 @@ public class TextAdapter extends RecyclerView.Adapter<MyViewHolder> {
         this.strs = strs;
     }
 
-    public String getItemByIndex(int i){
+        public String getItemByIndex(int i){
         return strs.get(i);
     }
 
+    public void updateReceiptsList(List<String> newlist) {
+        strs.clear();
+        strs.addAll(newlist);
+        this.notifyDataSetChanged();
+    }
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int i) {

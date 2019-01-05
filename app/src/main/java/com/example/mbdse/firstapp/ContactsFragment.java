@@ -2,10 +2,12 @@ package com.example.mbdse.firstapp;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,26 +17,24 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivityFragment extends Fragment implements ICallable {
+public class ContactsFragment extends Fragment implements ICallable {
 
     ICallable mCallback;
     TextAdapter mAdapter;
     RecyclerView recyclerView;
-    ImageButton btn;
+    FloatingActionButton btn;
     Database db;
 
     List<String> strs = new ArrayList<String>();
     List<Person> prs = new ArrayList<Person>();
-    PopUpDemo popup = new PopUpDemo();
-    public MainActivityFragment() {
+    AddContact popup = new AddContact();
+    public ContactsFragment() {
         mAdapter = new TextAdapter(strs);
     }
 
@@ -51,11 +51,11 @@ public void onCreate(Bundle savedInstanceState) {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_main, container, false);
-        btn = (ImageButton) v.findViewById(R.id.btnTxt);
+        btn = (FloatingActionButton) v.findViewById(R.id.btnTxt);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity() ,PopUpDemo.class);
+                Intent intent = new Intent(getActivity() ,AddContact.class);
                 startActivity(intent);
             }
         });
@@ -72,6 +72,14 @@ public void onCreate(Bundle savedInstanceState) {
                 int pos = rv.getChildAdapterPosition(child);
                 if (pos >= 0)
                     transferData(mAdapter.getItemByIndex(pos));
+                if(getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE)//double fragments
+                {
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentHolder, new MessagesFragment());
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
                 return false;
             }
 

@@ -90,12 +90,20 @@ public class Database {
         return persons;
     }
 
-    public boolean cheklogin(String login){
+    public boolean checklogin(String login){
         SQLiteDatabase db = mDbHelper.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from User where login=?",new String[]{login});
+        Cursor cursor = db.rawQuery("select * from User where login = ?",new String[]{login});
         if (cursor.getCount() >0 ) return false;
         else return true;
     }
+
+    public boolean checkloginpass(String login, String password ){
+        SQLiteDatabase db = mDbHelper.getWritableDatabase();
+        Cursor cursor = db.rawQuery("select * from User where login = ? and password= ?",new String[]{login, password});
+        if (cursor.getCount() >0 ) return false;
+        else return true;
+    }
+
 
     public final class ContactContract {
 

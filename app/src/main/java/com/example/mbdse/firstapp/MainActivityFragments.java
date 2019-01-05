@@ -1,25 +1,17 @@
 package com.example.mbdse.firstapp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.res.Configuration;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
 
-public class MainActivity extends AppCompatActivity implements ICallable{
+public class MainActivityFragments extends AppCompatActivity implements ICallable{
 
     FrameLayout fl;
     FrameLayout fl1;
@@ -28,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements ICallable{
 
     boolean a = true;
 
-    MainActivityFragment maf = new MainActivityFragment();
-    SecActivityFragment sec = new SecActivityFragment();
+    ContactsFragment maf = new ContactsFragment();
+    MessagesFragment sec = new MessagesFragment();
     private TextAdapter mDbHelper;
 
     private Database db;
@@ -60,11 +52,11 @@ public class MainActivity extends AppCompatActivity implements ICallable{
 
     protected void onRestart(){
         super.onRestart();
-        Toast.makeText(getApplicationContext(),"fragment actif",Toast.LENGTH_SHORT).show();
+       /* Toast.makeText(getApplicationContext(),"fragment actif",Toast.LENGTH_SHORT).show();
         mDbHelper.notifyDataSetChanged();
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.show(maf);
-
+*/
 }
 //        btn.setOnClickListener(new View.OnClickListener() {
 //            @Override
