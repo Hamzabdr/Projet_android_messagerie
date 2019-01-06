@@ -14,8 +14,8 @@
         android:roundIcon="@mipmap/myicon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <service android:name="com.example.mbdse.firstapp.api.CheckMessagesService" android:process=":remote"/>
-        <receiver android:name="com.example.mbdse.firstapp.api.Receiver">
+        <service android:name="com.example.mbdse.firstapp.service.MessageService" android:process=":remote"/>
+        <receiver android:name="com.example.mbdse.firstapp.service.Receiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
