@@ -58,22 +58,6 @@ public class MainActivityFragments extends AppCompatActivity implements ICallabl
         fragmentTransaction.show(maf);
 */
 }
-//        btn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                addData();
-////                a= !a;
-////                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-////                if (a)
-////                {
-////                    fragmentTransaction.replace(fl.getId(),maf);
-////                } else {
-////                    fragmentTransaction.replace(fl.getId(),sec);
-////                }
-////                fragmentTransaction.commit();
-//            }
-//        });
-
 
 
     @Override

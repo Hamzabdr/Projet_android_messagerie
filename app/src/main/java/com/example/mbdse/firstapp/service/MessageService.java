@@ -57,7 +57,7 @@ public class MessageService extends Service {
             Notification notification = new NotificationCompat.Builder(this, "M_CH_ID")
                     .setSmallIcon(R.drawable.message)
                     .setContentTitle("MsgMe")
-                    .setContentText("Messaging application")
+                    .setContentText("You have a new msg")
                     .setContentIntent(pendingIntent).build();
 
             startForeground(1337, notification);
@@ -70,19 +70,19 @@ public class MessageService extends Service {
             myJob.stopJob();
             serviceRunning = false;
             Intent intent = new Intent();
-            intent.setAction("restartService");
+            intent.setAction("com.example.mbdse.firstapp.service.restartService");
+            intent.setClass(this, Receiver.class);
             sendBroadcast(intent);
             super.onTaskRemoved(rootIntent);
         }
 
         @Override
         public void onDestroy() {
-            // Tell the user we stopped.
             myJob.stopJob();
             serviceRunning = false;
             Toast.makeText(this,"Service stopped", Toast.LENGTH_SHORT).show();
-            Log.e("SERVICE", "DESTROYED!!!");
-            Intent intent = new Intent("restartService");
+            Log.e("SERVICE", "DESTROYED");
+            Intent intent = new Intent("com.example.mbdse.firstapp.service.restartService");
             sendBroadcast(intent);
         }
 
@@ -135,8 +135,7 @@ public class MessageService extends Service {
             if(serviceRunning) return START_NOT_STICKY;
             super.onStartCommand(intent,flags,startId);
             Toast.makeText(this, "Started Service!!!", Toast.LENGTH_SHORT).show();
-            //have to run indefinitely...
-            // return don't stops the service, its a loop...
+
             myJob = new Job();
             thread = new Thread(myJob);
             thread.start();

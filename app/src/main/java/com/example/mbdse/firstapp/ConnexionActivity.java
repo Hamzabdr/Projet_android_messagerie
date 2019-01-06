@@ -39,26 +39,25 @@ public class ConnexionActivity extends AppCompatActivity {
         final Intent intent2 = new Intent(this, MainActivityFragments.class);
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("Login","hamza");
-        editor.putString("Password","hamza");
+        editor.putString("Login", "hamza");
+        editor.putString("Password", "hamza");
         editor.commit();
-        String name = preferences.getString("Login","");
-        final String password = preferences.getString("Password","");
+        String name = preferences.getString("Login", "");
+        final String password = preferences.getString("Password", "");
         loginBox.setText(name);
         passBox.setText(password);
-        startService(new Intent(this,MessageService.class));
-        Log.i("Connect ONCREATE", "created!");
+        //startService(new Intent(this, MessageService.class));
         validBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 SharedPreferences.Editor editor = preferences.edit();
-                editor.putString("Login",loginBox.getText().toString());
-                editor.putString("Password",passBox.getText().toString());
-
+                editor.putString("Login", loginBox.getText().toString());
+                editor.putString("Password", passBox.getText().toString());
                 editor.commit();
-        if ( !(db.checkloginpass(loginBox.getText().toString(),passBox.getText().toString())))
-                startActivity(intent2);
+
+                if (!(db.checkloginpass(loginBox.getText().toString(), passBox.getText().toString())))
+                    startActivity(intent2);
             }
         });
         registerBtn.setOnClickListener(new View.OnClickListener() {
@@ -68,26 +67,5 @@ public class ConnexionActivity extends AppCompatActivity {
             }
         });
 
-//        TextWatcher tw = new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-//
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                login();
-//
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable s) {
-//            }
-//        };
-//
-//
-//        passBox.addTextChangedListener(tw);
-//
-//        loginBox.addTextChangedListener(tw);
     }
 }

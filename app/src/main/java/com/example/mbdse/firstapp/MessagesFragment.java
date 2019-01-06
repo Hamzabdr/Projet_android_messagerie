@@ -75,7 +75,6 @@ public class MessagesFragment extends Fragment {
         if (body.length() > 0) {
 
         Message msg = new Message(body,"Hamza",true);
-            msgtext.getText().clear();
             msgtext.setText("");
             msgAdapter.add(msg);
             messages.setSelection(messages.getCount() - 1);

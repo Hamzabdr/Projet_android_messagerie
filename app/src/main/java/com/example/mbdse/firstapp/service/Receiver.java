@@ -8,7 +8,6 @@ import android.util.Log;
 public class Receiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.i("SERVICE", "Stops Ohhhhhhh");
             context.startService(new Intent(context, MessageService.class));;
         }
     }
